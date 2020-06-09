@@ -1,104 +1,63 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
-import pandas as pd
 import plotly.graph_objs as go
 
-# Data cleaning
+########### Define your variables
+beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
+ibu_values=[35, 60, 85, 75]
+abv_values=[5.4, 7.1, 9.2, 4.3]
+color1='lightblue'
+color2='darkgreen'
+mytitle='Beer Comparison'
+tabtitle='beer!'
+myheading='Flying Dog Beers'
+label1='IBU'
+label2='ABV'
+githublink='https://github.com/austinlasseter/flying-dog-beers'
+sourceurl='https://www.flyingdog.com/beers/'
 
-df=pd.read_csv('bruegel_electricity_data_2.csv')
-df['date_20'] = pd.to_datetime(df['date_20'])
-df['Week_Number'] = df['date_20'].dt.week
-df = df[df.holiday != 1]
-df_week=df['adj_ratio'].groupby([df['ccode'],df['Week_Number']]).mean()
-df_week=df_week.unstack()
-df_week=df_week.mul(100)
+########### Set up the chart
+bitterness = go.Bar(
+    x=beers,
+    y=ibu_values,
+    name=label1,
+    marker={'color':color1}
+)
+alcohol = go.Bar(
+    x=beers,
+    y=abv_values,
+    name=label2,
+    marker={'color':color2}
+)
 
-df_default=df_week[df_week.index.isin(['FR','DE','IT','PL','ES','GB'])]
+beer_data = [bitterness, alcohol]
+beer_layout = go.Layout(
+    barmode='group',
+    title = mytitle
+)
 
-x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
-          'Week 9', 'Week 10']
+beer_fig = go.Figure(data=beer_data, layout=beer_layout)
 
-# - - - - - - - - - 
 
+########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.title=tabtitle
 
-# - - - - - - - 
-
-app.layout = html.Div([
-    html.H1('Weekly Electricity Consumption as % of 2019'),
-    html.Div([
-    html.Label('Select regions:'),
-    dcc.Dropdown(
-        id = 'dropdown',
-        options=[{'label': i, 'value': i} for i in df_week.index],
-        value=['FR','DE','IT','PL','ES','GB'],
-        multi=True,
-        #placeholder = 'Select regions'
-    ),
-    ],
-    style={"width": "48%", "display": "inline-block"}),
-            
+########### Set up the layout
+app.layout = html.Div(children=[
+    html.H1(myheading),
     dcc.Graph(
-        id='heatmap',
-
-         figure = {
-                 'data' : [go.Heatmap(
-                     #z=df_default,
-                     #x=x_labels,
-                     #y=['Germany','Spain','France','UK','Italy','Poland'],
-                     showscale = True,
-                     colorscale = [[0, 'rgb(246,5,5)'], [1, 'rgb(9,230,50)']],
-                     xgap = 2,
-                     ygap = 5,
-                     zmin=60,
-                     zmax=120,
-                     hovertemplate='%{x} : %{z:.2f}% <extra></extra>',
-                     hoverongaps=False
-                       )],
-                 }        
-
-            )
-]) 
-
-# - - - - - - - - - - - - 
-
-@app.callback(
-        Output(component_id='heatmap',component_property='figure'),
-        [Input(component_id='dropdown',component_property='value')]  
- )
-
-# - - - - - - - - - -
-
-def update_graph(dropdown):
-    dff_week = df_week
-    new_dff = dff_week[dff_week.index.isin(dropdown)]
-        
-    figure = go.Figure(data=go.Heatmap(
-                    z=new_dff,
-                    x=x_labels,
-                    y=new_dff.index,
-                    showscale = True,
-                    colorscale = [[0, 'rgb(246,5,5)'], [1, 'rgb(9,230,50)']],
-                    xgap = 2,
-                    ygap = 5,
-                    zmin=60,
-                    zmax=120,
-                    hovertemplate='%{y}, %{x} : %{z:.0f}% <extra></extra>',
-                    hoverongaps=False
-                         ))
-    figure.update_layout(
-    #margin = dict(t=200,r=200,b=200,l=200),
-    #width = 700, height = 700,
-    autosize = False,
-    )
-    
-    return (figure) 
-
+        id='flyingdog',
+        figure=beer_fig
+    ),
+    html.A('Code on Github', href=githublink),
+    html.Br(),
+    html.A('Data Source', href=sourceurl),
+    ]
+)
 
 if __name__ == '__main__':
     app.run_server()
