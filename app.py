@@ -2,6 +2,22 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
+import pandas as pd 
+from dash.dependencies import Input, Output
+
+#######My data
+df=pd.read_csv('bruegel_electricity_4.csv')
+df['date_20'] = pd.to_datetime(df['date_20'])
+df['Week_Number'] = df['date_20'].dt.week
+df = df[df.holiday != 1]
+df_week=df['adj_ratio'].groupby([df['ccode'],df['Week_Number']]).mean()
+df_week=df_week.unstack()
+df_week=df_week.mul(100)
+
+df_default=df_week[df_week.index.isin(['FR','DE','IT','PL','ES','GB'])]
+
+x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
+          'Week 9', 'Week 10','Week 11','Week 12','Week 13','Week 14']
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -47,17 +63,41 @@ server = app.server
 app.title=tabtitle
 
 ########### Set up the layout
-app.layout = html.Div(children=[
-    html.H1(myheading),
-    dcc.Graph(
-        id='flyingdog',
-        figure=beer_fig
+app.layout = html.Div([
+    html.H1('Weekly Electricity Consumption as % of 2019'),
+    html.Div([
+    html.Label('Select regions:'),
+    dcc.Dropdown(
+        id = 'dropdown',
+        options=[{'label': i, 'value': i} for i in df_week.index],
+        value=['FR','DE','IT','PL','ES','GB'],
+        multi=True,
+        #placeholder = 'Select regions'
     ),
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A('Data Source', href=sourceurl),
-    ]
-)
+    ],
+    style={"width": "48%", "display": "inline-block"}),
+            
+    dcc.Graph(
+        id='heatmap',
+
+         figure = {
+                 'data' : [go.Heatmap(
+                     z=df_default,
+                     x=x_labels,
+                     y=['Germany','Spain','France','UK','Italy','Poland'],
+                     showscale = True,
+                     colorscale = [[0, 'rgb(246,5,5)'], [1, 'rgb(9,230,50)']],
+                     xgap = 2,
+                     ygap = 5,
+                     zmin=60,
+                     zmax=120,
+                     hovertemplate='%{x} : %{z:.2f}% <extra></extra>',
+                     hoverongaps=False
+                       )],
+                 }        
+
+            )
+]) 
 
 if __name__ == '__main__':
     app.run_server()
