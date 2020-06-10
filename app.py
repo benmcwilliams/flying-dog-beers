@@ -39,6 +39,27 @@ app.layout = html.Div([
     ),
     ],
     style={"width": "48%", "display": "inline-block"}),
+          
+    dcc.Graph(
+        id='heatmap',
+
+         figure = {
+                 'data' : [go.Heatmap(
+                     z=df_default,
+                     x=x_labels,
+                     y=['Germany','Spain','France','UK','Italy','Poland'],
+                     showscale = True,
+                     colorscale = [[0, 'rgb(246,5,5)'], [1, 'rgb(9,230,50)']],
+                     xgap = 2,
+                     ygap = 5,
+                     zmin=60,
+                     zmax=120,
+                     hovertemplate='%{x} : %{z:.2f}% <extra></extra>',
+                     hoverongaps=False
+                       )],
+                 }        
+
+            ) 
             
 ]) 
 
