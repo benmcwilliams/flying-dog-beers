@@ -5,7 +5,8 @@ import plotly.graph_objs as go
 import pandas as pd 
 
 #######My data
-df=pd.read_csv('bruegel_electricity_4.csv')
+url = 'https://github.com/benmcwilliams/flying-dog-beers/blob/master/bruegel_electricity_data_2.csv'
+df = pd.read_csv(url, index_col=0)
 df['date_20'] = pd.to_datetime(df['date_20'])
 df['Week_Number'] = df['date_20'].dt.week
 df = df[df.holiday != 1]
