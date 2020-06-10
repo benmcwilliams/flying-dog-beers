@@ -5,7 +5,7 @@ import plotly.graph_objs as go
 import pandas as pd 
 
 #######My data
-url = 'https://github.com/benmcwilliams/flying-dog-beers/blob/master/bruegel_electricity_data_2.csv'
+url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/bruegel_electricity_data_2.csv'
 df = pd.read_csv(url, index_col=0)
 df['date_20'] = pd.to_datetime(df['date_20'])
 df['Week_Number'] = df['date_20'].dt.week
