@@ -7,13 +7,7 @@ import plotly.graph_objs as go
 
 # Data cleaning
 
-df = pd.read_csv('bruegel_electricity_data_2.csv')
-df['date_20'] = pd.to_datetime(df['date_20'])
-df['Week_Number'] = df['date_20'].dt.week
-df = df[df.holiday != 1]
-df_week = df['adj_ratio'].groupby([df['ccode'], df['Week_Number']]).mean()
-df_week = df_week.unstack()
-df_week = df_week.mul(100)
+df_week=pd.read_csv('df_week.csv')
 
 df_default = df_week[df_week.index.isin(['FR', 'DE', 'IT', 'PL', 'ES', 'GB'])]
 
@@ -80,7 +74,7 @@ def update_graph(dropdown):
         z=new_dff,
         x=x_labels,
         y=new_dff.index,
-        showscale=Tru
+        showscale=True
         colorscale=[[0, 'rgb(246,5,5)'], [1, 'rgb(9,230,50)']],
         xgap=2,
         ygap=5,
