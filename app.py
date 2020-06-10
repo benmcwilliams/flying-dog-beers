@@ -13,7 +13,12 @@ df_week = pd.read_csv(url, index_col=0)
 default=['Hokkaido','Tohoku','Tokyo','Hokuriko','Chubu','Kansai','Chugoku','Shikoku','Kyushu','Okinawa']
 df_default = df_week[df_week.index.isin(default)]
 
+
+x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
+          'Week 9', 'Week 10','Week 11','Week 12','Week 13','Week 14']
+
 z = df_default.values
+x = x_labels
 
 ########### Initiate the app
 app = dash.Dash(__name__)
@@ -38,6 +43,7 @@ app.layout = html.Div([
         id='heatmap',
 
          figure = ff.create_annotated_heatmap(z,
+                    x=x,
                     colorscale = [[0, 'rgb(250,5,5)'], [1, 'rgb(9,230,50)']],
                     xgap = 2,
                     ygap = 5,
