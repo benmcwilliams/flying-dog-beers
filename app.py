@@ -3,7 +3,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd 
-from dash.dependencies import Input, Output
 
 #######My data
 df=pd.read_csv('bruegel_electricity_4.csv')
@@ -63,41 +62,18 @@ server = app.server
 app.title=tabtitle
 
 ########### Set up the layout
-app.layout = html.Div([
-    html.H1('Weekly Electricity Consumption as % of 2019'),
-    html.Div([
-    html.Label('Select regions:'),
-    dcc.Dropdown(
-        id = 'dropdown',
-        options=[{'label': i, 'value': i} for i in df_week.index],
-        value=['FR','DE','IT','PL','ES','GB'],
-        multi=True,
-        #placeholder = 'Select regions'
-    ),
-    ],
-    style={"width": "48%", "display": "inline-block"}),
-            
+########### Set up the layout
+app.layout = html.Div(children=[
+    html.H1(myheading),
     dcc.Graph(
-        id='heatmap',
-
-         figure = {
-                 'data' : [go.Heatmap(
-                     z=df_default,
-                     x=x_labels,
-                     y=['Germany','Spain','France','UK','Italy','Poland'],
-                     showscale = True,
-                     colorscale = [[0, 'rgb(246,5,5)'], [1, 'rgb(9,230,50)']],
-                     xgap = 2,
-                     ygap = 5,
-                     zmin=60,
-                     zmax=120,
-                     hovertemplate='%{x} : %{z:.2f}% <extra></extra>',
-                     hoverongaps=False
-                       )],
-                 }        
-
-            )
-]) 
+        id='flyingdog',
+        figure=beer_fig
+    ),
+    html.A('Code on Github', href=githublink),
+    html.Br(),
+    html.A('Data Source', href=sourceurl),
+    ]
+) 
 
 if __name__ == '__main__':
     app.run_server()
