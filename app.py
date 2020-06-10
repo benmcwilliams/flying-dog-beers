@@ -19,6 +19,7 @@ x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 
 
 z = df_default.values
 x = x_labels
+z_text = np.around(z,decimals=0)
 
 ########### Initiate the app
 app = dash.Dash(__name__)
@@ -45,6 +46,7 @@ app.layout = html.Div([
          figure = ff.create_annotated_heatmap(z,
                     x=x,
                     colorscale = [[0, 'rgb(250,5,5)'], [1, 'rgb(9,230,50)']],
+                    annotation_text=z_text, 
                     xgap = 2,
                     ygap = 5,
                     zmin=-30,
