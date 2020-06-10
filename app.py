@@ -132,6 +132,37 @@ app.layout = html.Div([
             
 ]) 
 
+@app.callback(
+        Output(component_id='heatmap',component_property='figure'),
+        [Input(component_id='dropdown',component_property='value')]  
+ )
+
+# - - - - - - - - - -
+
+def update_graph(dropdown):
+    dff_week = df_week
+    new_dff = dff_week[dff_week.index.isin(dropdown)]
+    
+    y_labels = []
+    for i in new_dff.index.tolist():
+        value=dict[i]
+        y_labels.append(value)
+    
+    z = new_dff.values
+    x = x_labels
+    y=y_labels
+    z_text = np.around(z,decimals=0)
+        
+    figure = ff.create_annotated_heatmap(z,
+                    x=x,
+                    y=y,
+                    annotation_text=z_text, 
+                    colorscale = [[0, 'rgb(250,5,5)'], [1, 'rgb(9,230,50)']],
+                    xgap = 2,
+                    ygap = 5,
+                    zmin=-30,
+                    zmax=10,)
+    return(figure)
 
 if __name__ == '__main__':
     app.run_server()
