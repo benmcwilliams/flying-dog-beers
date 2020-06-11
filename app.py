@@ -9,6 +9,7 @@ import numpy as np
 #######My data
 url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week.csv'
 df_week = pd.read_csv(url, index_col=0)
+df_week=df_week.sort_values(['23'],ascending=False)
 
 default=['Hokkaido','Tohoku','Tokyo','Hokuriko','Chubu','Kansai','Chugoku','Shikoku','Kyushu','Okinawa']
 df_default = df_week[df_week.index.isin(default)]
