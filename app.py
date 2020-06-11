@@ -91,7 +91,7 @@ dict ={'AT': 'Austria',
     'Shikoku':'Shikoku',
     'Kyushu':'Kyushu',
     'Okinawa':'Okinawa',
-    'JPN':'Japan'
+    'Japan':'Japan'
        }
 
 y_labels = []
@@ -111,7 +111,7 @@ server = app.server
 ########### Set up the layout
 app.layout = html.Div([
     html.H1('Bruegel global electricity tracker'),
-    html.H2('Changes in weekly 2020 consumptions relative to 2019'),
+    html.H2('Change in 2020 consumption relative to 2019'),
     html.Div([
     dcc.Dropdown(
         id = 'dropdown',
@@ -151,12 +151,13 @@ app.layout = html.Div([
 
 @app.callback(
         Output(component_id='heatmap',component_property='figure'),
-        [Input(component_id='dropdown',component_property='value')]  
+        [Input(component_id='dropdown',component_property='value'),
+        Input('colour', 'value')]  
  )
 
 # - - - - - - - - - -
 
-def update_graph(dropdown):
+def update_graph(dropdown,colour):
     dff_week = df_week
     zz_labels = z_labels
           
@@ -172,12 +173,17 @@ def update_graph(dropdown):
     x = x_labels
     y=y_labels
     z_text = new_z_labels.values
+    
+    if colour == "red":
+        scale=[[0, 'rgb(250,5,5)'], [1, 'rgb(9,230,50)']]
+    else:
+        scale=[[0, 'rgb(100,100,100)'], [1, 'rgb(300,300,300)']]
         
     figure = ff.create_annotated_heatmap(z,
                     x=x,
                     y=y,
                     annotation_text=z_text, 
-                    colorscale = [[0, 'rgb(250,5,5)'], [1, 'rgb(9,230,50)']],
+                    colorscale = scale,
                     xgap = 2,
                     ygap = 5,
                     zmin=-30,
