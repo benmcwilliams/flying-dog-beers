@@ -6,13 +6,19 @@ import pandas as pd
 import plotly.figure_factory as ff
 import numpy as np
 
-#######My data
+#######Clean data
 url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week.csv'
 df_week = pd.read_csv(url, index_col=0)
 df_week=df_week.sort_values(['23'],ascending=False)
 
+z_labels_df=df_week.fillna(999)
+z_labels=z_labels_df.applymap(lambda x: round(x))
+z_labels=z_labels.astype(str)+'%'
+z_labels=z_labels.replace('999%', np.NaN)
+
 default=['Hokkaido','Tohoku','Tokyo','Hokuriko','Chubu','Kansai','Chugoku','Shikoku','Kyushu','Okinawa']
 df_default = df_week[df_week.index.isin(default)]
+z_labels_default = z_labels[z_labels.index.isin(default)]
 
 x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
           'Week 9', 'Week 10','Week 11','Week 12','Week 13','Week 14']
@@ -96,7 +102,7 @@ for i in df_default.index.tolist():
 y=y_labels
 z = df_default.values
 x = x_labels
-z_text = np.around(z,decimals=0)
+z_text = z_labels_default.values
 
 ########### Initiate the app
 app = dash.Dash(__name__)
@@ -142,7 +148,10 @@ app.layout = html.Div([
 
 def update_graph(dropdown):
     dff_week = df_week
+    zz_labels = z_labels
+          
     new_dff = dff_week[dff_week.index.isin(dropdown)]
+    new_z_labels = zz_labels[zz_labels.index.isin(dropdown)]
     
     y_labels = []
     for i in new_dff.index.tolist():
@@ -152,7 +161,7 @@ def update_graph(dropdown):
     z = new_dff.values
     x = x_labels
     y=y_labels
-    z_text = np.around(z,decimals=0)
+    z_text = new_z_labels.values
         
     figure = ff.create_annotated_heatmap(z,
                     x=x,
