@@ -16,7 +16,7 @@ z_labels=z_labels_df.applymap(lambda x: round(x))
 z_labels=z_labels.astype(str)+'%'
 z_labels=z_labels.replace('999%', np.NaN)
 
-default=['Hokkaido','Tohoku','Tokyo','Hokuriko','Chubu','Kansai','Chugoku','Shikoku','Kyushu','Okinawa']
+default=['Hokkaido','Tohoku','Tokyo','Hokuriku','Chubu','Kansai','Chugoku','Shikoku','Kyushu','Okinawa']
 df_default = df_week[df_week.index.isin(default)]
 z_labels_default = z_labels[z_labels.index.isin(default)]
 
@@ -84,9 +84,9 @@ dict ={'AT': 'Austria',
     'Hokkaido':'Hokkaido',
     'Tohoku':'Tohoku',
     'Tokyo':'Tokyo',
-    'Hokuriko':'Hokuriko',
+    'Hokuriku':'Hokuriku',
     'Chubu':'Chubu',
-    'Kansai':'Kansai',
+    'Kansai ':'Kansai ',
     'Chugoku':'Chugoku',
     'Shikoku':'Shikoku',
     'Kyushu':'Kyushu',
@@ -134,7 +134,8 @@ app.layout = html.Div([
                     xgap = 2,
                     ygap = 5,
                     zmin=-30,
-                    zmax=10,),
+                    zmax=10,
+                    hoverinfo='skip'),
             )
             
 ]) 
@@ -171,7 +172,14 @@ def update_graph(dropdown):
                     xgap = 2,
                     ygap = 5,
                     zmin=-30,
-                    zmax=10,)
+                    zmax=10,
+                    hoverinfo='skip')
+
+    figure.update_layout(
+    autosize=True,
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    xaxis_showgrid=False, yaxis_showgrid=False)
     return(figure)
 
 if __name__ == '__main__':
