@@ -124,7 +124,7 @@ app.layout = html.Div([
     dcc.Dropdown(
         id='colour',
         options=[
-            {'label': 'Classic mode', 'value': 'grey'},
+            {'label': 'Greyscale', 'value': 'grey'},
             {'label': 'Traffic lights', 'value': 'red'},
         ],
         placeholder='Select colour scheme'
