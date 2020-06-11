@@ -110,16 +110,25 @@ server = app.server
 
 ########### Set up the layout
 app.layout = html.Div([
-    html.H1('Weekly Electricity Consumption as % of 2019'),
+    html.H1('Bruegel global electricity tracker'),
+    html.H2('Changes in weekly 2020 consumptions relative to 2019'),
     html.Div([
-    html.Label('Select regions:'),
     dcc.Dropdown(
         id = 'dropdown',
         options=[{'label': i, 'value': i} for i in df_week.index],
         value=['FR','DE','IT','PL','ES','GB'],
         multi=True,
-        #placeholder = 'Select regions'
+        placeholder = 'Select regions'
     ),
+              
+    dcc.Dropdown(
+        id='colour',
+        options=[
+            {'label': 'Classic mode', 'value': 'grey'},
+            {'label': 'Traffic lights', 'value': 'red'},
+        ],
+        placeholder='Select colour scheme'
+    ),             
     ],
     style={"width": "48%", "display": "inline-block"}),
           
