@@ -150,6 +150,8 @@ app.layout = html.Div([
                     zmin=-30,
                     zmax=10,
                     hoverinfo='skip'),
+         config={
+        'displayModeBar': False}
     )            
 ]) 
 
