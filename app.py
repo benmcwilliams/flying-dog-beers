@@ -20,8 +20,8 @@ default=['Europe','USA','Japan','India','Australia']
 df_default = df_week[df_week.index.isin(default)]
 z_labels_default = z_labels[z_labels.index.isin(default)]
 
-x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
-          'Week 9', 'Week 10','Week 11','Week 12','Week 13','Week 14']
+x_labels=['(March) <br> Week 1', 'Week 2', 'Week 3', 'Week 4', '(April) <br> Week 5', 'Week 6', 'Week 7', 'Week 8',
+          'Week 9', '(May) <br> Week 10','Week 11','Week 12','Week 13','(June) <br> Week 14']
 
 ctry_labels ={
     'Europe':'European Average',
