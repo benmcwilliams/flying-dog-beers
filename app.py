@@ -131,7 +131,7 @@ app.layout = html.Div([
             {'label': 'Traffic lights', 'value': 'red'},
             {'label': 'Blues', 'value': 'blue'}
         ],
-        value = 'red'
+        value = 'red',
         placeholder='Select colour scheme'
     ),             
     ],
