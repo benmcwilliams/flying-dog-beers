@@ -128,7 +128,7 @@ app.layout = html.Div([
         ],
         value = 'red',
         placeholder='Select colour scheme'
-    ),],
+    )],
     style={"width": "20%"}),
               
     dcc.Dropdown(
@@ -137,10 +137,10 @@ app.layout = html.Div([
         value=['Europe','USA','Japan','India','Australia'],
         multi=True,
         placeholder = 'Select regions'
-    ),
-                          
+    ),                       
     ],
-    style={"fontFamily" : "Georgia","width": "52%", "display": "inline-block"}),
+    style={"fontFamily" : "Georgia", "display": "inline-block", "width": "52%"}
+    ),
           
     dcc.Graph(
         id='heatmap',
