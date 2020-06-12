@@ -129,7 +129,7 @@ app.layout = html.Div([
         value = 'red',
         placeholder='Select colour scheme'
     )],
-    style={"width": "20%"}),
+    style={"width": "30%"}),
               
     dcc.Dropdown(
         id = 'dropdown',
@@ -139,7 +139,7 @@ app.layout = html.Div([
         placeholder = 'Select regions'
     ),                       
     ],
-    style={"fontFamily" : "Georgia", "display": "inline-block", "width": "52%"}
+    style={"fontFamily" : "Georgia", "display": "inline-block", "width": "65%"}
     ),
           
     dcc.Graph(
