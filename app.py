@@ -135,7 +135,7 @@ app.layout = html.Div([
         placeholder='Select colour scheme'
     ),             
     ],
-    style={"width": "48%", "display": "inline-block"}),
+    style={"width": "52%", "display": "inline-block"}),
           
     dcc.Graph(
         id='heatmap',
@@ -200,7 +200,7 @@ def update_graph(dropdown,colour):
     figure.update_layout(
     autosize=False,
     height=300 + 20*len(dropdown),
-    width=1500,
+    width=1200,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     xaxis_showgrid=False, yaxis_showgrid=False)
