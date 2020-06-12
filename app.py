@@ -139,7 +139,7 @@ app.layout = html.Div([
         placeholder = 'Select regions'
     ),                       
     ],
-    style={"fontFamily" : "Georgia", "display": "inline-block", "width": "65%"}
+    style={"fontFamily" : "Georgia", "display": "inline-block", "width": "85%"}
     ),
           
     dcc.Graph(
