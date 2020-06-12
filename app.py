@@ -113,17 +113,12 @@ server = app.server
 
 ########### Set up the layout
 app.layout = html.Div([
+          
     html.H1('Bruegel global electricity tracker'),
     html.H2('Change in 2020 consumption relative to 2019'),
+          
     html.Div([
-    dcc.Dropdown(
-        id = 'dropdown',
-        options=[{'label': value, 'value': key} for key,value in ctry_labels.items()],
-        value=['Europe','USA','Japan','India','Australia'],
-        multi=True,
-        placeholder = 'Select regions'
-    ),
-              
+    html.Div([          
     dcc.Dropdown(
         id='colour',
         options=[
@@ -133,9 +128,19 @@ app.layout = html.Div([
         ],
         value = 'red',
         placeholder='Select colour scheme'
-    ),             
+    ),],
+    style={"width": "20%"}),
+              
+    dcc.Dropdown(
+        id = 'dropdown',
+        options=[{'label': value, 'value': key} for key,value in ctry_labels.items()],
+        value=['Europe','USA','Japan','India','Australia'],
+        multi=True,
+        placeholder = 'Select regions'
+    ),
+                          
     ],
-    style={"width": "52%", "display": "inline-block"}),
+    style={"fontFamily" : "Georgia","width": "52%", "display": "inline-block"}),
           
     dcc.Graph(
         id='heatmap',
