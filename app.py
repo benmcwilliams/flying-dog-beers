@@ -150,8 +150,9 @@ app.layout = html.Div([
                     zmin=-30,
                     zmax=10,
                     hoverinfo='skip'),
-            )
-            
+         config={
+         'displayModeBar': False}
+    )            
 ]) 
 
 @app.callback(
@@ -199,11 +200,15 @@ def update_graph(dropdown,colour):
 
     figure.update_layout(
     autosize=False,
+    font=dict(
+        family="Georgia"
+    ),
     height=300 + 20*len(dropdown),
     width=1200,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     xaxis_showgrid=False, yaxis_showgrid=False)
+          
     return(figure)
 
 if __name__ == '__main__':
