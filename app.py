@@ -198,6 +198,9 @@ def update_graph(dropdown,colour):
 
     figure.update_layout(
     autosize=False,
+    font=dict(
+      family="Georgia"
+    ),
     height=300 + 20*len(dropdown),
     width=1200,
     paper_bgcolor='rgba(0,0,0,0)',
