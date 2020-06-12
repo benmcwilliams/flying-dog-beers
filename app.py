@@ -23,7 +23,7 @@ z_labels_default = z_labels[z_labels.index.isin(default)]
 x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
           'Week 9', 'Week 10','Week 11','Week 12','Week 13','Week 14']
 
-dict ={
+ctry_labels ={
     'Europe':'European Average',
     'USA':'USA Average',
     'Japan': 'Japan Average',
@@ -99,7 +99,7 @@ dict ={
 
 y_labels = []
 for i in df_default.index.tolist():
-    value=dict[i]
+    value=ctry_labels[i]
     y_labels.append(value)
 
 y=y_labels
@@ -118,7 +118,7 @@ app.layout = html.Div([
     html.Div([
     dcc.Dropdown(
         id = 'dropdown',
-        options=[{'label': value, 'value': key} for key,value in dict.items()],
+        options=[{'label': value, 'value': key} for key,value in ctry_labels.items()],
         value=['Europe','USA','Japan','India','Australia'],
         multi=True,
         placeholder = 'Select regions'
@@ -170,7 +170,7 @@ def update_graph(dropdown,colour):
     
     y_labels = []
     for i in new_dff.index.tolist():
-        value=dict[i]
+        value=ctry_labels[i]
         y_labels.append(value)
     
     z = new_dff.values
