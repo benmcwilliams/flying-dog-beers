@@ -129,7 +129,9 @@ app.layout = html.Div([
         options=[
             {'label': 'Greyscale', 'value': 'grey'},
             {'label': 'Traffic lights', 'value': 'red'},
+            {'label': 'Blues', 'value': 'blue'}
         ],
+        value = 'red'
         placeholder='Select colour scheme'
     ),             
     ],
@@ -179,8 +181,10 @@ def update_graph(dropdown,colour):
     
     if colour == "red":
         scale=[[0, 'rgb(250,5,5)'], [1, 'rgb(9,230,50)']]
-    else:
+    elif colour == 'grey':
         scale=[[0, 'rgb(100,100,100)'], [1, 'rgb(300,300,300)']]
+    elif colour == 'blue':
+        scale = [0, 'rgb(123,104,238)'], [1, 'rgb(240,248,255)']
         
     figure = ff.create_annotated_heatmap(z,
                     x=x,
@@ -194,7 +198,9 @@ def update_graph(dropdown,colour):
                     hoverinfo='skip')
 
     figure.update_layout(
-    autosize=True,
+    autosize=False,
+    height=300 + 20*len(dropdown),
+    width=1500,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     xaxis_showgrid=False, yaxis_showgrid=False)
