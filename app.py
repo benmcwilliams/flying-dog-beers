@@ -7,7 +7,7 @@ import plotly.figure_factory as ff
 import numpy as np
 
 #######Clean data
-url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week.csv'
+url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week2.csv'
 df_week = pd.read_csv(url, index_col=0)
 df_week=df_week.sort_values(['23'],ascending=False)
 
