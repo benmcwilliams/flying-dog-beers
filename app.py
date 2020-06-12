@@ -16,14 +16,21 @@ z_labels=z_labels_df.applymap(lambda x: round(x))
 z_labels=z_labels.astype(str)+'%'
 z_labels=z_labels.replace('999%', np.NaN)
 
-default=['Hokkaido','Tohoku','Tokyo','Hokuriku','Chubu','Kansai','Chugoku','Shikoku','Kyushu','Okinawa']
+default=['Europe','USA','Japan','India','Australia']
 df_default = df_week[df_week.index.isin(default)]
 z_labels_default = z_labels[z_labels.index.isin(default)]
 
 x_labels=['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8',
           'Week 9', 'Week 10','Week 11','Week 12','Week 13','Week 14']
 
-dict ={'AT': 'Austria',
+dict ={
+    'Europe':'European Average',
+    'USA':'USA Average',
+    'Japan': 'Japan Average',
+    'India': 'India Average',
+    'Australia': 'Australia Average',
+    
+    'AT': 'Austria',
     'BE': 'Belgium',
     'BG': 'Bulgaria',
     'CH': 'Switzerland',
@@ -53,45 +60,41 @@ dict ={'AT': 'Austria',
     'SK': 'Slovakia',
     'UA': 'Ukraine',
        
-    'CAL':'California',
-    'CAR':'Carolinas',
-    'CENT':'Central',
-    'FLA':'Florida',
-    'MIDA':'Mid-Atlantic',
-    'MIDW':'Mid-West',
-    'NE':'Northeast',
-    'NY':'New York',
-    'NW':'Northwest',
-    'SW':'Southwest',
-    'TEN':'Tennessee',
-    'TEX':'Texas',
-    'USA':'USA average',
+    'CAL':'California (USA)',
+    'CAR':'Carolinas (USA)',
+    'CENT':'Central (USA)',
+    'FLA':'Florida (USA)',
+    'MIDA':'Mid-Atlantic (USA)',
+    'MIDW':'Mid-West (USA)',
+    'NE':'Northeast (USA)',
+    'NY':'New York (USA)',
+    'NW':'Northwest (USA)',
+    'SW':'Southwest (USA)',
+    'TEN':'Tennessee (USA)',
+    'TEX':'Texas (USA)',
        
-    'NSW':'New South Wales',
-    'QLD':'Queensland',
-    'SA':'South Australia',
-    'VIC':'Victoria',
-    'TAS':'Tasmania',
-    'AUS':'Australian average',
+    'NSW':'New South Wales (Aus)',
+    'QLD':'Queensland (Aus)',
+    'SA':'South Australia (Aus)',
+    'VIC':'Victoria (Aus)',
+    'TAS':'Tasmania (Aus)',
        
-    'NER': 'India: North-East Region',
-    'ER' : 'India: East Region',
-    'WR' : 'India: West Region',
-    'SR' : 'India: South Region',
-    'NR' : 'India: North Region',
-    'India':'Indian average',
+    'NER': 'North-East Region (India)',
+    'ER' : 'East Region (India)',
+    'WR' : 'West Region (India)',
+    'SR' : 'South Region (India)',
+    'NR' : 'North Region (India)',
        
-    'Hokkaido':'Hokkaido',
-    'Tohoku':'Tohoku',
-    'Tokyo':'Tokyo',
-    'Hokuriku':'Hokuriku',
-    'Chubu':'Chubu',
-    'Kansai ':'Kansai ',
-    'Chugoku':'Chugoku',
-    'Shikoku':'Shikoku',
-    'Kyushu':'Kyushu',
-    'Okinawa':'Okinawa',
-    'Japan':'Japan'
+    'Hokkaido':'Hokkaido (Japan)',
+    'Tohoku':'Tohoku (Japan)',
+    'Tokyo':'Tokyo (Japan)',
+    'Hokuriku':'Hokuriku (Japan)',
+    'Chubu':'Chubu (Japan)',
+    'Kansai ':'Kansai (Japan) ',
+    'Chugoku':'Chugoku (Japan)',
+    'Shikoku':'Shikoku (Japan)',
+    'Kyushu':'Kyushu (Japan)',
+    'Okinawa':'Okinawa (Japan)',
        }
 
 y_labels = []
@@ -115,8 +118,8 @@ app.layout = html.Div([
     html.Div([
     dcc.Dropdown(
         id = 'dropdown',
-        options=[{'label': i, 'value': i} for i in df_week.index],
-        value=['FR','DE','IT','PL','ES','GB'],
+        options=[{'label': value, 'value': key} for key,value in dict.items()],
+        value=['Europe','USA','Japan','India','Australia'],
         multi=True,
         placeholder = 'Select regions'
     ),
