@@ -7,7 +7,7 @@ import plotly.figure_factory as ff
 import numpy as np
 
 #######Clean data
-url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week2.csv'
+url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week_3.csv'
 df_week = pd.read_csv(url, index_col=0)
 df_week=df_week.sort_values(['23'],ascending=False)
 
@@ -16,12 +16,12 @@ z_labels=z_labels_df.applymap(lambda x: round(x))
 z_labels=z_labels.astype(str)+'%'
 z_labels=z_labels.replace('999%', np.NaN)
 
-default=['Europe','USA','Japan','India','Australia']
+default=['Europe','USA','Japan','India','Australia','Russia']
 df_default = df_week[df_week.index.isin(default)]
 z_labels_default = z_labels[z_labels.index.isin(default)]
 
 x_labels=['(March) <br> Week 1', 'Week 2', 'Week 3', 'Week 4', '(April) <br> Week 5', 'Week 6', 'Week 7', 'Week 8',
-          'Week 9', '(May) <br> Week 10','Week 11','Week 12','Week 13','(June) <br> Week 14']
+          'Week 9', '(May) <br> Week 10','Week 11','Week 12','Week 13','(June) <br> Week 14','Week 15']
 
 ctry_labels ={
     'Europe':'European Average',
@@ -29,6 +29,7 @@ ctry_labels ={
     'Japan': 'Japan Average',
     'India': 'India Average',
     'Australia': 'Australia Average',
+    'Russia': 'Russian Average',
     
     'AT': 'Austria',
     'BE': 'Belgium',
@@ -95,6 +96,14 @@ ctry_labels ={
     'Shikoku':'Shikoku (Japan)',
     'Kyushu':'Kyushu (Japan)',
     'Okinawa':'Okinawa (Japan)',
+          
+    'Centre': 'Centre (Russia)',
+    'East': 'East (Russia)',
+    'Northwest': 'Northwest (Russia)',
+    'Siberia': 'Siberia (Russia)',
+    'South': 'South (Russia)',
+    'Urals': 'Urals (Russia)',
+    'Volga': 'Volga (Russia)'
        }
 
 y_labels = []
@@ -134,7 +143,7 @@ app.layout = html.Div([
     dcc.Dropdown(
         id = 'dropdown',
         options=[{'label': value, 'value': key} for key,value in ctry_labels.items()],
-        value=['Europe','USA','Japan','India','Australia'],
+        value=['Europe','USA','Japan','India','Australia','Russia'],
         multi=True,
         placeholder = 'Select regions'
     ),                       
