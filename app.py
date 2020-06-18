@@ -220,7 +220,7 @@ def update_graph(dropdown,colour):
     font=dict(
       family="Georgia"
     ),
-    height=300 + 20*len(dropdown),
+    height=400 + 20*len(dropdown),
     width=800,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
