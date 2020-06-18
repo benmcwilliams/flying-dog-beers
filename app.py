@@ -221,7 +221,7 @@ def update_graph(dropdown,colour):
       family="Georgia"
     ),
     height=300 + 20*len(dropdown),
-    width=600,
+    width=900,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     xaxis_showgrid=False, yaxis_showgrid=False)
