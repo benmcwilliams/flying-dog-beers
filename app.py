@@ -123,7 +123,7 @@ server = app.server
 ########### Set up the layout
 app.layout = html.Div([
           
-    html.H1('Bruegel global electricity tracker'),
+    html.H1('Figure 2: global electricity tracker'),
     html.H2('Change in 2020 consumption relative to 2019'),
           
     html.Div([
