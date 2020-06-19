@@ -202,7 +202,7 @@ def update_graph(dropdown,colour):
     elif colour == 'blue':
         scale = [0, 'rgb(123,104,238)'], [1, 'rgb(240,248,255)']
     elif colour == 'reds':
-        scale = [0, 'rgb(230, 46, 0)'], [1, 'rgb(255, 214, 204)']
+        scale = [0, 'rgb(220, 7, 0)'], [1, 'rgb(249, 236, 123)']
         
     figure = ff.create_annotated_heatmap(z,
                     x=x,
