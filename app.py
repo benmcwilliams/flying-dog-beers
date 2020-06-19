@@ -20,8 +20,8 @@ default=['Europe','USA','Japan','India','Australia','Russia']
 df_default = df_week[df_week.index.isin(default)]
 z_labels_default = z_labels[z_labels.index.isin(default)]
 
-x_labels=['(March) <br> Week 1', 'Week 2', 'Week 3', 'Week 4', '(April) <br> Week 5', 'Week 6', 'Week 7', 'Week 8',
-          'Week 9', '(May) <br> Week 10','Week 11','Week 12','Week 13','(June) <br> Week 14','Week 15']
+x_labels=['(Mar) Week 1', 'Week 2', 'Week 3', 'Week 4', '(Apr) Week 5', 'Week 6', 'Week 7', 'Week 8',
+          'Week 9', '(May) Week 10','Week 11','Week 12','Week 13','(Jun) Week 14','Week 15']
 
 ctry_labels ={
     'Europe':'European Average',
@@ -220,7 +220,7 @@ def update_graph(dropdown,colour):
     font=dict(
       family="Georgia"
     ),
-    height=400 + 20*len(dropdown),
+    height=450 + 15*len(dropdown),
     width=800,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
