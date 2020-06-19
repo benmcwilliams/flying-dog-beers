@@ -9,7 +9,7 @@ import numpy as np
 #######Clean data
 url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week_3.csv'
 df_week = pd.read_csv(url, index_col=0)
-df_week=df_week.sort_values(['23'],ascending=False)
+df_week=df_week.sort_values(['24'],ascending=False)
 
 z_labels_df=df_week.fillna(999)
 z_labels=z_labels_df.applymap(lambda x: round(x))
@@ -220,7 +220,7 @@ def update_graph(dropdown,colour):
     font=dict(
       family="Georgia"
     ),
-    height=450 + 15*len(dropdown),
+    height=500 + 12.5*len(dropdown),
     width=800,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
