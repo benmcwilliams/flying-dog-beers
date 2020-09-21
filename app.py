@@ -7,7 +7,7 @@ import plotly.figure_factory as ff
 import numpy as np
 
 #######Clean data
-url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week_28.csv'
+url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week_29.csv'
 df_week = pd.read_csv(url, index_col=0)
 df_week=df_week.sort_values(['37'],ascending=False)
 
@@ -23,7 +23,7 @@ z_labels_default = z_labels[z_labels.index.isin(default)]
 x_labels=['(Mar) Week 1', 'Week 2', 'Week 3', 'Week 4', '(Apr) Week 5', 'Week 6', 'Week 7', 'Week 8',
           'Week 9', '(May) Week 10','Week 11','Week 12','Week 13','(Jun) Week 14','Week 15','Week 16','Week 17',
          '(July) Week 18','Week 19','Week 20','Week 21','Week 22','Week 23 (Aug)','Week 24','Week 25','Week 26',
-         'Week 27 (Sep)','Week 28']
+         'Week 27 (Sep)','Week 28','Week 29']
 
 ctry_labels ={
     'Europe':'European Average',
