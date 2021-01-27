@@ -175,7 +175,7 @@ app.layout = html.Div([
         'displayModeBar': False}
     )            
     ],
-    style={"width"="500",
+    style={"width"="90%",
            "overflow"="scroll"}
     ) 
 
