@@ -128,8 +128,6 @@ server = app.server
 
 ########### Set up the layout
 app.layout = html.Div([
-    
-    style={"width"="500px","overflow"="scroll"},
           
     html.H1('Figure 2: global electricity tracker'),
     html.H2('Change in 2020 consumption relative to 2019'),
@@ -176,7 +174,8 @@ app.layout = html.Div([
          config={
         'displayModeBar': False}
     )            
-]) 
+    ],
+    style={"maxHeight"="500px","overflow"="scroll"}) 
 
 @app.callback(
         Output(component_id='heatmap',component_property='figure'),
