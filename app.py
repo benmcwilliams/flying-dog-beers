@@ -174,10 +174,7 @@ app.layout = html.Div([
          config={
         'displayModeBar': False}
     )            
-    ],
-    style={"width"="90%",
-           "overflow"="scroll"}
-    ) 
+    ]) 
 
 @app.callback(
         Output(component_id='heatmap',component_property='figure'),
