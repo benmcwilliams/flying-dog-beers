@@ -175,7 +175,9 @@ app.layout = html.Div([
         'displayModeBar': False}
     )            
     ],
-    style={'width':500,'overflow':'scroll'}
+    style={'width':800,
+           'height':500,
+           'overflow':'scroll'}
 )
 
 @app.callback(
