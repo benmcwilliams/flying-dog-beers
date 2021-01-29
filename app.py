@@ -176,7 +176,7 @@ app.layout = html.Div([
     )            
     ],
     style={'width':1000,
-           'height':800,
+           'height':750,
            'overflow':'scroll'}
 )
 
