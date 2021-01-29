@@ -176,7 +176,7 @@ app.layout = html.Div([
     )            
     ],
     style={'width':1000,
-           'height':700,
+           'height':800,
            'overflow':'scroll'}
 )
 
@@ -231,7 +231,7 @@ def update_graph(dropdown,colour):
       family="Georgia"
     ),
     height=500 + 12.5*len(dropdown),
-    width=1200,
+    width=1300,
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     xaxis_showgrid=False, yaxis_showgrid=False)
