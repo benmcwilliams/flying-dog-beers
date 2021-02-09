@@ -176,8 +176,8 @@ app.layout = html.Div([
     )            
     ],
     style={'width':1000,
-           'height':900,
-           'overflow':'scroll'}
+           'height':950,
+           'overflow-x':'scroll'}
 )
 
 @app.callback(
