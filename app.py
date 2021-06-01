@@ -7,9 +7,9 @@ import plotly.figure_factory as ff
 import numpy as np
 
 #######Clean data
-url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week_60.csv'
+url = 'https://raw.githubusercontent.com/benmcwilliams/flying-dog-beers/master/df_week_64.csv'
 df_week = pd.read_csv(url, index_col=0)
-df_week=df_week.sort_values(['2021(16)'],ascending=False)
+df_week=df_week.sort_values(['2021(20)'],ascending=False)
 
 z_labels_df=df_week.fillna(999)
 z_labels=z_labels_df.applymap(lambda x: round(x))
@@ -26,7 +26,8 @@ x_labels=['(Mar) Week 1', 'Week 2', 'Week 3', 'Week 4', '(Apr) Week 5', 'Week 6'
          '(Sep) Week 27','Week 28','Week 29','Week 30','(Oct) Week 31','Week 32','Week 33','Week 34','Week 35',
           '(Nov) Week 36','Week 37','Week 38','Week 39','(Dec) Week 40','Week 41','Week 42','Week 43','Week 44',
          '(Jan 21) Week 45','Week 46','Week 47','Week 48','(Feb) Week 49','Week 50','Week 51','Week 52','(Mar) Week 53',
-         'Week 54','Week 55','Week 56','Week 57','(Apr) Week 58','Week 59','Week 60']
+         'Week 54','Week 55','Week 56','Week 57','(Apr) Week 58','Week 59','Week 60','Week 61','(May) Week 62',
+         'Week 63','Week 64']
          
 
 ctry_labels ={
